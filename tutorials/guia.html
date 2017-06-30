@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #A31515;
+	font-size: inherit;
+	font-family: inherit;
+}
+
+</style>
+
+</head>
+<body>
+<p></p>
+<h1>Entorno de desarrollo</h1>
+<p>Guía de instalación y configuración del entorno de desarrollo basado en Eclipse.</p>
+<h2>GNU ARM Eclipse</h2>
+<p>Como primer paso, se instalará Eclipse CDT, el GNU ARM Embedded Toolchain, Windows Build Tools (si se utiliza Windows), Java (en caso de no estar ya instalado), y la serie de extensiones <a href="http://gnuarmeclipse.github.io/">GNU ARM Eclipse</a>.</p>
+<p>Para esto, seguir la guía de instalación paso a paso de <a href="http://gnuarmeclipse.github.io/install/">GNU ARM Eclipse</a>.</p>
+<ul>
+<li>No es necesario realizar los pasos para instalar SEGGER J-Link o QEMU.</li>
+</ul>
+<p>Estas son las guías a seguir en el enlace anterior (en orden):</p>
+<ul>
+<li><a href="http://gnuarmeclipse.github.io/toolchain/install">GNU ARM Embedded Toolchain</a></li>
+<li><a href="http://gnuarmeclipse.github.io/windows-build-tools/install/">Windows Build Tools</a></li>
+<li><a href="http://gnuarmeclipse.github.io/openocd/install">OpenOCD</a></li>
+<li><a href="http://gnuarmeclipse.github.io/plugins/install/">Eclipse CDT</a></li>
+<li><a href="http://gnuarmeclipse.github.io/plugins/install/">GNU ARM Eclipse Plug-ins</a></li>
+<li><a href="http://gnuarmeclipse.github.io/eclipse/workspace/preferences">Configuración adicional del workspace</a> (no es obligatorio, aunque es recomendado)</li>
+</ul>
+<h2>Plug-ins adicionales</h2>
+<p>Adicionalmente, instalar los siguientes plugins:</p>
+<ul>
+<li><a href="https://mcuoneclipse.com/2016/07/06/freertos-kernel-awareness-for-eclipse-from-nxp/">FreeRTOS Task Aware Debugger (TAD)</a> de NXP.</li>
+<li><a href="https://percepio.com/docs/FreeRTOS/manual/Recorder.html#eclipse">Percepio FreeRTOS Tracealyzer Plugin</a>. Consultar esta <a href="https://mcuoneclipse.com/2017/03/08/percepio-freertos-tracealyzer-plugin-for-eclipse/">guía</a> para información adicional.</li>
+</ul>
+<h2>Percepio Tracealyzer para FreeRTOS</h2>
+<p>Instalar la aplicación <a href="https://percepio.com/tz/freertostrace/">Percepio Tracealyzer para FreeRTOS</a>:</p>
+<ul>
+<li>Para Windows ofrece un instalador.</li>
+<li>Para Linux / MacOS, un paquete <code>tar.gz</code>.</li>
+</ul>
+<h2>pyOCD</h2>
+<p>PyOCD requiere Python 2.7, y no soporta Python 3. Si no esta ya instalado, descargar la última versión de Python 2.7 desde <a href="http://www.python.org">www.python.org</a>. Durante la instalación, seleccionar la opción <strong>[Add to path]</strong>, o agregar posteriormente el directorio de instalación al <em>path</em> del sistema.</p>
+<p>Para verificar que Python haya sido instalado correctamente, ejecutar lo siguiente desde una linea de comandos, para obtener la versión instalada:</p>
+<pre class="hljs"><code><div>$ python --version
+Python 2.7.10
+$
+</div></code></pre>
+<p>Luego, para instalar pyOCD ejecutar desde una linea de comandos:</p>
+<pre class="hljs"><code><div>$ pip install pyocd
+</div></code></pre>
+<p>Para verificar que se haya instalado correctamente el <code>pyocd-gdbserver</code>, ejecutar lo siguiente desde una linea de comandos, para obtener la versión instalada:</p>
+<pre class="hljs"><code><div>$ pyocd-gdbserver --version
+0.8.1a1
+$
+</div></code></pre>
+<h2>Git</h2>
+<p>Descargar Git desde <a href="">https://git-scm.com</a> e instalarlo.</p>
+<p>Se puede utilizar la interfaza gráfica <code>git-gui</code> ya incluida con Git, o seleccionar algún <a href="https://git-scm.com/downloads/guis">cliente de terceros</a>.</p>
+<p>En esta guía solo se utilizarán comandos básicos de Git. Se pueden consultar estos tutoriales para conocer con más detalle su operación:</p>
+<ul>
+<li>Git in 15 minutes: <a href="">https://try.github.io/</a></li>
+<li>Colección de tutoriales: <a href="">https://www.atlassian.com/git/tutorials</a></li>
+<li>Git Tutorial: <a href="">https://git-scm.com/docs/gittutorial</a></li>
+<li>Pro Git book: <a href="">https://book.git-scm.com/book/en/v2</a></li>
+</ul>
+<h2>Proyecto de prueba</h2>
+<p>A continuación se descargará mediante Git un proyecto de prueba para la placa <a href="https://developer.mbed.org/platforms/mbed-LPC1768/">mbed LPC1768</a>.</p>
+<h3>Clonar el proyecto de prueba</h3>
+<p>En primer lugar, clonar el proyecto de prueba usando Git: https://github.com/fepz/mbed-blinky-makefile</p>
+<ul>
+<li>Desde un cliente, usar la opción <strong>[Clone]</strong>.</li>
+<li>Desde la linea de comandos utilizar el comando <code>git clone</code>.</li>
+</ul>
+<p><em>Tip</em>: si tienen cuenta en GitHub, pueden probar con realizar un <em>fork</em> del proyecto.</p>
+<h3>Importar el proyecto en Eclipse</h3>
+<p>Una vez clonado localmente, agregar el proyecto en Eclipse:</p>
+<ul>
+<li>Seleccionar <strong>[File &gt; Makefile project with existing code]</strong>.</li>
+<li>En la nueva ventana:
+<ul>
+<li>En <strong>[Existing Code Location]</strong> indicar el <em>path</em> al proyecto (usar el botón <strong>[Browse...]</strong>).</li>
+<li>En <strong>[Toolchain for Indexer]</strong> seleccionar la opción <em>Cross ARM GCC</em> (¡importante!).</li>
+</ul>
+</li>
+</ul>
+<p>El proyecto debe aparecer ahora en la vista <em>Project Explorer</em>:</p>
+<ul>
+<li>Hacer clic derecho sobre el mismo, y seleccionar <strong>[Properties]</strong> en el menú contextual.</li>
+<li>En la nueva ventana, seleccionar <strong>[C/C++ Build &gt; Settings]</strong>. Si todo esta bien configurado, en la pestaña <strong>[Toolchains]</strong>, el campo <em>Name</em> debe indicar <em>GNU Tools for ARM Embedded Processors</em>.</li>
+<li>Hacer clic en <strong>[Ok]</strong>.</li>
+</ul>
+<p>Verificar que dentro del proyecto exista el directorio <code>build</code>. En caso que no exista, crearlo haciendo clic derecho sobre el proyecto en la vista <em>Project Explorer</em>, y seleccionando <strong>[New &gt; Folder]</strong> en el menú contextual.</p>
+<h3>Compilar</h3>
+<p>Finalmente, para compilar el proyecto se puede:</p>
+<ul>
+<li>Hacer clic derecho sobre el proyecto en la vista <em>Project Explorer</em> y seleccionar <strong>[Build]</strong> en el menú contextual.</li>
+<li>Seleccionar en la barra de menúes de Eclipse <strong>[Project &gt; Build Project]</strong>.</li>
+<li>Hacer clic en el ícono <em>Build</em> (un martillo).</li>
+</ul>
+<p>Si el proyecto compilo correctamente, en la vista <strong>[Console]</strong> debe indicarse que se generó correctamente el archivo <code>build/blink.elf</code>.</p>
+<h3>Ejecutar</h3>
+<p>Primero, verificar que el <code>pyocd-gdbserver</code> este correctamente configurado en Eclipse:</p>
+<ul>
+<li>Seleccionar <strong>[Windows &gt; Preferences]</strong> en el menú de Eclipse.</li>
+<li>En la nueva ventana, seleccionar <strong>[Run / Debug &gt; PyOCD]</strong> en la lista izquierda.</li>
+<li>En el campo <em>Executable</em> debe indicar <code>pyocd-gdbserver.exe</code> (sin la extensión en Linux o MacOS), y el campo <em>Folder</em> debe contener el <em>path</em> al ejecutable (en Windows <code>C:\Python27\Scripts</code>).</li>
+<li>Hacer clic en <strong>[Ok]</strong>.</li>
+</ul>
+<p>A continuación se creará y ejecutará una configuración de <em>debug</em>:</p>
+<ul>
+<li>Seleccionar <strong>[Run &gt; Debug Configurations...]</strong> en el menú de Eclipse.</li>
+<li>En la nueva ventana, hacer doble clic sobre <strong>[GDB PyOCD debugging]</strong> en el menú izquierdo. Esto crea una nueva configuración basada en este perfil.</li>
+<li>En el panel derecho:
+<ul>
+<li>En la pestaña <strong>[Main]</strong>, el campo <em>Project</em> debe indicar el nombre del proyecto de prueba. El campo <em>C/C++ Application</em> debe indicar el nombre del archivo ELF, en este caso <code>build/blink.elf</code>. Si no estuviera presente escribir el nombre del mismo, o bien hacer clic en el botón <strong>[Search project]</strong> o <strong>[Explore]</strong> para buscarlo.</li>
+<li>En la pestaña <strong>[Debugger]</strong>, el campo <em>Executable</em> debe contener el valor <code>${pyocd_path}\${pyocd_executable}</code>. Estas dos variables son reemplazadas por los valores especificados el menú <strong>[Run / Debug &gt; PyOCD]</strong>.</li>
+<li>En la pestaña <strong>[Common]</strong>, seleccionar la opción <strong>[Shared file:]</strong>, indicando en el campo el nombre del proyecto. De esta manera el archivo <code>*.launch</code> con la configuración es guardado dentro del proyecto.</li>
+<li>Hacer clic en el botón <strong>[Apply]</strong>.</li>
+</ul>
+</li>
+<li>Con la placa mbed LPC1768 conectada a la PC, hacer clic en el botón <strong>[Debug]</strong>. Es posible que Eclipse pregunte si se desea cambiar a la perspectiva <em>Debug</em>, responder que sí.</li>
+</ul>
+
+</body>
+</html>
