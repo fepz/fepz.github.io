@@ -64,7 +64,7 @@ En esta guía solo se utilizarán comandos básicos de Git. Se pueden consultar 
 A continuación se descargará mediante Git un proyecto de prueba para la placa [mbed LPC1768](https://developer.mbed.org/platforms/mbed-LPC1768/).
 
 ### Clonar el proyecto de prueba
-En primer lugar, clonar el proyecto de prueba usando Git: https://github.com/fepz/mbed-blinky-makefile
+En primer lugar, clonar el proyecto de prueba usando Git: [https://github.com/unpsjb-rtsg/mbed-blinky-makefile]()
 * Desde un cliente, usar la opción **[Clone]**.
 * Desde la linea de comandos utilizar el comando `git clone`.
 
