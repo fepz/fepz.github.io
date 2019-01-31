@@ -9,3 +9,4 @@ List of fiction and non-fiction books that I had readed and enjoyed.
 
 ## Non-Fiction
 * The Demon-Haunted World: Science as a Candle in the Dark.
+* What is real?: the unfinished quest for the meaning of quantum physics, Adam Becker. Finished 31/01/2019.
