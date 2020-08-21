@@ -5,6 +5,8 @@
 
 - Isaac Asimov. *Cuentos Completos II*. Ediciones B, 2008.
 
+- Seferino Reato. *Doce noches*. Sudamericana, 2015.
+
 - Frank Herbert. *Dune*. Debolsillo, 2013.
 
 - Stephen King. *El resplandor*. Debolsillo, 2014.
