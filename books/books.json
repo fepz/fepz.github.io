@@ -65,6 +65,13 @@
         "year": 2011,
         "editorial": "Alianza",
         "notas": "EPUB Kindle"
+    },
+    {
+        title: "El Cercano Oriente",
+        author: "Isaac Asimov",
+        year: 2010,
+        editorial: "Alianza",
+        isbn: "978-84-206-3745-7"
     }
 ]
     
