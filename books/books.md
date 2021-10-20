@@ -9,11 +9,19 @@
 
 - Frank Herbert. *Dune*. Debolsillo, 2013.
 
+- Isaac Asimov. *El Cercano Oriente*. Alianza, 2010.
+
 - Stephen King. *El resplandor*. Debolsillo, 2014.
 
 - Simon Singh. *El último teorema de Fermat*. Páprika, 2014.
 
 - Stephen King. *La Niebla*. Sudamericana, 2010.
+
+- Isaac Asimov. *Las palabras y los mitos*. Desconocida, 2010.
+
+- Isaac Asimov. *Los egipcios*. Alianza, 2011.
+
+- Boris y Arkadi Strugatsky. *Picnic junto al camino*. Desconocida, 2010.
 
 - Thomas S. Kuhn. *The structure of scientific revolutions*. The University of Chicago Press, 2012.
 

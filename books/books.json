@@ -72,6 +72,22 @@
         "year": 2010,
         "editorial": "Alianza",
         "isbn": "978-84-206-3745-7"
+    },
+    {
+        "title": "Picnic junto al camino",
+        "author": "Boris y Arkadi Strugatsky",
+        "year": 2010,
+        "editorial": "Desconocida",
+        "notas": "EPUB Kindle",
+        "leido": "2021-06-09"
+    },
+    {
+        "title": "Las palabras y los mitos",
+        "author": "Isaac Asimov",
+        "year": 2010,
+        "editorial": "Desconocida",
+        "notas": "EPUB Kindle",
+        "leido": "2021-10-20"
     }
 ]
     
