@@ -15,6 +15,8 @@
 
 - Simon Singh. *El último teorema de Fermat*. Páprika, 2014.
 
+- Greg Bear. *La Fragua de Dios*. Desconocida, 1986.
+
 - Stephen King. *La Niebla*. Sudamericana, 2010.
 
 - Isaac Asimov. *Las palabras y los mitos*. Desconocida, 2010.
