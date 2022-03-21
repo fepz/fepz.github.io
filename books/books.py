@@ -3,8 +3,6 @@ from urllib.request import urlopen
 from tqdm.auto import tqdm  
 from argparse import ArgumentParser
 import json
-import pandas
-import numpy as np
 
 
 def get_args():

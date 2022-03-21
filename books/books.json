@@ -58,6 +58,44 @@
         "author": "Seferino Reato",
         "year": 2015,
         "editorial": "Sudamericana"
+    },
+    {
+        "title": "Los egipcios",
+        "author": "Isaac Asimov",
+        "year": 2011,
+        "editorial": "Alianza",
+        "notas": "EPUB Kindle"
+    },
+    {
+        "title": "El Cercano Oriente",
+        "author": "Isaac Asimov",
+        "year": 2010,
+        "editorial": "Alianza",
+        "isbn": "978-84-206-3745-7"
+    },
+    {
+        "title": "Picnic junto al camino",
+        "author": "Boris y Arkadi Strugatsky",
+        "year": 2010,
+        "editorial": "Desconocida",
+        "notas": "EPUB Kindle",
+        "leido": "2021-06-09"
+    },
+    {
+        "title": "Las palabras y los mitos",
+        "author": "Isaac Asimov",
+        "year": 2010,
+        "editorial": "Desconocida",
+        "notas": "EPUB Kindle",
+        "leido": "2021-10-20"
+    },
+    {
+        "title": "La Fragua de Dios",
+        "author": "Greg Bear",
+        "year": 1986,
+        "editorial": "Desconocida",
+        "notas": "EPUB Kindle",
+        "leido": "2021-12-08"
     }
 ]
     
